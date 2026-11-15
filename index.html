@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sq"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KrijoWeb – Nga ideja në website.</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:#05070f;color:#e8ecf7;font-family:Inter,system-ui,sans-serif;margin:0;overflow-x:hidden}
+.grad{background:linear-gradient(120deg,#ff4d8d,#a855f7 40%,#38bdf8 75%,#ff9a3c)}
+.gtext{background:linear-gradient(120deg,#ff6aa2,#b46cff 45%,#38bdf8 80%,#ffa447);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:1.25rem;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(168,85,247,.6);box-shadow:0 20px 50px -20px rgba(168,85,247,.5)}
+.rv{opacity:0;transform:translateY(24px);transition:.8s}.rv.on{opacity:1;transform:none}
+@keyframes fl{50%{transform:translateY(-12px)}}.fl{animation:fl 6s ease-in-out infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}100%{box-shadow:0 0 0 22px rgba(37,211,102,0)}}.pu{animation:pu 2s infinite}
+</style></head><body><div id="root"></div>
+<script>
+const {useState,useEffect,useRef}=React;const html=htm.bind(React.createElement);
+const PHONE="38345787810",MSG="Përshëndetje KrijoWeb! Jam i interesuar për krijimin e një website për biznesin tim.";
+const wa=t=>`https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
+const IG="https://instagram.com/krijoweb",MAIL="info@krijoweb.com";
+const LOGO="logo.jpg";
+const Logo=({w=170})=>html`<div style=${{width:w,height:w/4.19,overflow:'hidden',background:'#fff',borderRadius:12,flex:'none'}}><img src=${LOGO} alt="KrijoWeb" style=${{width:'125%',marginLeft:'-12.5%',marginTop:'-21.8%',maxWidth:'none',display:'block',mixBlendMode:'multiply'}}/></div>`;
+const Reveal=({children,cls=''})=>{const r=useRef();useEffect(()=>{const o=new IntersectionObserver(e=>e[0].isIntersecting&&(r.current.classList.add('on'),o.disconnect()),{threshold:.12});o.observe(r.current);return()=>o.disconnect()},[]);return html`<div ref=${r} className=${'rv '+cls}>${children}</div>`};
+const Btn=({href,onClick,primary,children})=>html`<a href=${href} onClick=${onClick} target=${href&&href.startsWith('http')?'_blank':undefined} rel="noopener" className=${'inline-flex items-center justify-center rounded-full px-7 py-3.5 font-semibold transition hover:scale-105 '+(primary?'grad text-white shadow-lg shadow-purple-500/30':'border border-white/25 hover:bg-white/10')}>${children}</a>`;
+const WAIcon=()=>html`<svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M20.5 3.5A11.8 11.8 0 0 0 2 17.9L0.5 23.5l5.8-1.5A11.9 11.9 0 0 0 12 23.5 11.8 11.8 0 0 0 20.5 3.5zM12 21.5a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.4.9.9-3.3-.2-.4A9.9 9.9 0 1 1 12 21.5zm5.4-7.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.7 14.7 0 0 0 5.6 4.9c2 .8 2 .6 2.4.5a2.9 2.9 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>`;
+const NAV=[["Ballina","#home"],["Shërbimet","#sherbimet"],["Pse ne","#pse"],["Portfolio","#portfolio"],["Kontakt","#kontakt"]];
+const SERVICES=[["🏢","Website për biznese","Prezantim profesional i biznesit tënd me dizajn modern dhe unik."],["📅","Booking & rezervime online","Sisteme për rezervime për restorante, salone, berberë dhe hotele."],["🛍️","Dyqane online (E-commerce)","Shit produktet 24/7 me dyqan online të shpejtë dhe të sigurt."],["🚀","Landing pages","Faqe që konvertojnë vizitorët në klientë për fushata dhe reklama."],["✨","Redizajnim & përmirësime","Rifreskojmë website-in e vjetër: më modern, më i shpejtë, më i qartë."],["💻","Zhvillim i personalizuar","Funksionalitete dhe sisteme sipas kërkesave specifike të biznesit tënd."]];
+const WHY=[["🎨","Dizajn modern dhe unik"],["📱","Responsive në telefon, tablet dhe kompjuter"],["⚡","Shpejtësi dhe performancë"],["🤝","Mbështetje profesionale"],["🎯","Zgjidhje sipas nevojave të biznesit"]];
+const DEMOS=[{n:"Restorant",b:"La Bella Kuzhina",c:["#7c2d12","#f59e0b"],i:"🍽️",h:"Shije e vërtetë, çdo ditë",btn:"Rezervo tavolinën"},{n:"Berber",b:"Sharp Barber",c:["#111827","#6366f1"],i:"✂️",h:"Stil i përsosur",btn:"Cakto terminin"},{n:"Sallon bukurie",b:"Glow Beauty",c:["#be185d","#f9a8d4"],i:"💅",h:"Bukuria jote, kujdesi ynë",btn:"Rezervo online"},{n:"Dyqan rrobash",b:"Urban Style",c:["#0f172a","#14b8a6"],i:"👕",h:"Koleksioni i ri 2026",btn:"Bli tani"},{n:"Hotel",b:"Hotel Prishtina Palace",c:["#1e3a8a","#38bdf8"],i:"🏨",h:"Pushim luksoz në zemër të qytetit",btn:"Rezervo dhomën"}];
+const Mock=({d,big})=>html`<div className="overflow-hidden rounded-xl bg-[#0b0f1c] border border-white/10 w-full" style=${{aspectRatio:'16/10'}}>
+<div className="flex items-center gap-1.5 px-3 py-2 bg-white/5"><i className="w-2 h-2 rounded-full bg-red-400"/><i className="w-2 h-2 rounded-full bg-yellow-400"/><i className="w-2 h-2 rounded-full bg-green-400"/><span className="ml-2 text-[10px] opacity-50 truncate">${d.b.toLowerCase().replace(/ /g,'')}.com</span></div>
+<div className="flex items-center justify-between px-3 py-1.5 text-[10px] opacity-80"><b>${d.b}</b><span>Ballina · Shërbime · Kontakt</span></div>
+<div className=${'flex flex-col items-center justify-center text-center px-4 '+(big?'py-12':'py-6')} style=${{background:`linear-gradient(135deg,${d.c[0]},${d.c[1]})`}}>
+<div className=${big?'text-6xl':'text-3xl'}>${d.i}</div><div className=${'font-bold mt-1 '+(big?'text-2xl':'text-sm')}>${d.h}</div>
+<span className=${'mt-2 rounded-full bg-white text-black font-semibold '+(big?'px-5 py-2 text-sm':'px-3 py-1 text-[10px]')}>${d.btn}</span></div>
+<div className="grid grid-cols-3 gap-2 p-3">${[0,1,2].map(i=>html`<div key=${i} className="h-8 rounded-md bg-white/5"/>`)}</div></div>`;
+const Hero=()=>html`<section id="home" className="relative pt-32 pb-20 px-5 overflow-hidden">
+<div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-pink-500/25 blur-3xl"/><div className="absolute top-40 right-0 w-96 h-96 rounded-full bg-blue-500/25 blur-3xl"/>
+<div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+<div><span className="inline-block text-xs tracking-widest uppercase border border-white/15 rounded-full px-4 py-1.5 mb-6">Nga ideja në website.</span>
+<h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">Biznesi yt meriton një <span className="gtext">website profesional.</span></h1>
+<p className="mt-6 text-lg text-slate-300 max-w-xl">Ne krijojmë website moderne që ndihmojnë biznesin tënd të rritet online.</p>
+<div className="mt-9 flex flex-wrap gap-4"><${Btn} primary href="#sherbimet">Shiko shërbimet<//><${Btn} href="#kontakt">Na kontakto<//></div></div>
+<div className="relative fl max-w-xl mx-auto w-full pb-8"><div className="rounded-2xl border border-white/15 bg-[#111522] p-2 shadow-2xl shadow-purple-500/20"><${Mock} d=${DEMOS[0]} big=${true}/></div>
+<div className="h-3 mx-[-4%] rounded-b-3xl bg-gradient-to-b from-slate-600 to-slate-800"/>
+<div className="absolute -right-2 sm:-right-8 bottom-0 w-28 sm:w-36 rounded-[1.6rem] border-4 border-slate-700 bg-[#0b0f1c] p-1.5 shadow-2xl"><div className="rounded-2xl overflow-hidden text-center" style=${{background:`linear-gradient(160deg,${DEMOS[2].c[0]},${DEMOS[2].c[1]})`}}><div className="pt-3 text-[9px] font-bold">Glow Beauty</div><div className="text-3xl py-4">💅</div><div className="text-[9px] pb-2">Rezervo online</div><div className="bg-[#0b0f1c] grid grid-cols-2 gap-1 p-1.5"><i className="h-8 rounded bg-white/10"/><i className="h-8 rounded bg-white/10"/></div></div></div></div></div></section>`;
+const Head=({k,t,s})=>html`<${Reveal} cls="text-center max-w-2xl mx-auto mb-12"><div className="gtext font-semibold uppercase tracking-widest text-sm">${k}</div><h2 className="text-3xl sm:text-4xl font-bold mt-2">${t}</h2>${s&&html`<p className="text-slate-400 mt-3">${s}</p>`}<//>`;
+const Services=()=>html`<section id="sherbimet" className="py-20 px-5"><${Head} k="Shërbimet" t="Çfarë ofrojmë" s="Zgjidhje të plota digjitale për çdo lloj biznesi në Kosovë."/><div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${SERVICES.map(([i,t,d])=>html`<${Reveal} key=${t}><div className="card p-7 h-full"><div className="w-12 h-12 grid place-items-center rounded-xl grad text-2xl mb-5">${i}</div><h3 className="font-bold text-lg">${t}</h3><p className="text-slate-400 mt-2 text-sm">${d}</p></div><//>`)}</div></section>`;
+const Why=()=>html`<section id="pse" className="py-20 px-5 bg-white/[.02]"><${Head} k="Pse ne" t="Pse të zgjedhësh KrijoWeb?"/><div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${WHY.map(([i,t])=>html`<${Reveal} key=${t}><div className="card p-6 flex items-center gap-4"><span className="text-3xl">${i}</span><span className="font-semibold">${t}</span></div><//>`)}</div></section>`;
+const Portfolio=()=>{const [o,setO]=useState(null);return html`<section id="portfolio" className="py-20 px-5"><${Head} k="Portfolio" t="Projekte demo" s="Shembuj të dizajneve që krijojmë për sektorë të ndryshëm."/>
+<div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${DEMOS.map(d=>html`<${Reveal} key=${d.n}><div className="card p-4"><${Mock} d=${d}/><div className="flex items-center justify-between mt-4 px-1"><div><div className="font-bold">${d.n}</div><div className="text-xs text-slate-400">${d.b}</div></div><button onClick=${()=>setO(d)} className="grad rounded-full px-4 py-2 text-sm font-semibold hover:scale-105 transition">Shiko demon</button></div></div><//>`)}</div>
+${o&&html`<div onClick=${()=>setO(null)} className="fixed inset-0 z-[60] bg-black/80 backdrop-blur grid place-items-center p-5"><div onClick=${e=>e.stopPropagation()} className="max-w-2xl w-full"><${Mock} d=${o} big=${true}/><div className="flex justify-between items-center mt-4"><span className="text-sm text-slate-300">Demo: ${o.n} – ${o.b}</span><button onClick=${()=>setO(null)} className="border border-white/25 rounded-full px-5 py-2 text-sm">Mbyll</button></div></div></div>`}</section>`};
+const Contact=()=>{const [f,setF]=useState({name:'',biz:'',phone:'',msg:''});const s=k=>e=>setF({...f,[k]:e.target.value});
+const submit=e=>{e.preventDefault();window.open(wa(`Përshëndetje KrijoWeb!\nEmri: ${f.name}\nBiznesi: ${f.biz}\nTelefoni: ${f.phone}\nMesazhi: ${f.msg}`),'_blank')};
+const inp="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-purple-400 transition";
+return html`<section id="kontakt" className="py-20 px-5 bg-white/[.02]"><${Head} k="Kontakt" t="Le të krijojmë website-in tënd" s="Na shkruaj në WhatsApp – përgjigjemi shpejt."/>
+<div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+<div className="space-y-4"><${Btn} primary href=${wa(MSG)}>💬 Shkruaj në WhatsApp<//>
+<div className="card p-5 mt-4"><div className="text-sm text-slate-400">Telefon / WhatsApp</div><a href=${wa(MSG)} className="font-semibold">+383 45 787 810</a></div>
+<div className="card p-5"><div className="text-sm text-slate-400">Instagram</div><a href=${IG} target="_blank" rel="noopener" className="font-semibold">@krijoweb</a></div>
+<div className="card p-5"><div className="text-sm text-slate-400">Email</div><a href=${'mailto:'+MAIL} className="font-semibold">${MAIL}</a></div></div>
+<form onSubmit=${submit} className="card p-6 space-y-4 hover:!transform-none"><input required className=${inp} placeholder="Emri juaj" value=${f.name} onChange=${s('name')}/><input required className=${inp} placeholder="Emri i biznesit" value=${f.biz} onChange=${s('biz')}/><input required type="tel" className=${inp} placeholder="Numri i telefonit" value=${f.phone} onChange=${s('phone')}/><textarea required rows="4" className=${inp} placeholder="Mesazhi juaj" value=${f.msg} onChange=${s('msg')}/><button type="submit" className="w-full rounded-full py-3.5 font-semibold text-white bg-[#25D366] hover:scale-[1.02] transition">Dërgo në WhatsApp</button></form></div></section>`};
+const Footer=()=>html`<footer className="px-5 pt-14 pb-24 border-t border-white/10"><div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+<div><${Logo} w=${190}/><p className="mt-4 text-slate-400">Nga ideja në website.</p></div>
+<div><div className="font-semibold mb-3">Navigim</div><div className="grid gap-2 text-slate-400">${NAV.map(([n,h])=>html`<a key=${n} href=${h} className="hover:text-white">${n}</a>`)}</div></div>
+<div><div className="font-semibold mb-3">Rrjetet sociale</div><div className="grid gap-2 text-slate-400"><a href=${IG} target="_blank" rel="noopener" className="hover:text-white">Instagram</a><a href=${wa(MSG)} target="_blank" rel="noopener" className="hover:text-white">WhatsApp</a><a href=${'mailto:'+MAIL} className="hover:text-white">Email</a></div></div></div>
+<div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-sm text-slate-500">© ${new Date().getFullYear()} KrijoWeb. Të gjitha të drejtat e rezervuara.</div></footer>`;
+const App=()=>{const [m,setM]=useState(false);const [sc,setSc]=useState(false);useEffect(()=>{const f=()=>setSc(scrollY>20);addEventListener('scroll',f);return()=>removeEventListener('scroll',f)},[]);
+return html`<div><header className=${'fixed top-0 inset-x-0 z-50 transition '+(sc||m?'bg-[#05070f]/90 backdrop-blur border-b border-white/10':'')} style=${{paddingTop:'env(safe-area-inset-top,0px)'}}><div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3"><a href="#home"><${Logo} w=${150}/></a>
+<nav className="hidden md:flex gap-8 text-sm">${NAV.map(([n,h])=>html`<a key=${n} href=${h} className="text-slate-300 hover:text-white">${n}</a>`)}</nav>
+<a href=${wa(MSG)} target="_blank" rel="noopener" className="hidden md:block grad rounded-full px-5 py-2 text-sm font-semibold">WhatsApp</a>
+<button className="md:hidden text-2xl" aria-label="Menu" onClick=${()=>setM(!m)}>${m?'✕':'☰'}</button></div>
+${m&&html`<div className="md:hidden px-5 pb-4 grid gap-3">${NAV.map(([n,h])=>html`<a key=${n} href=${h} onClick=${()=>setM(false)} className="py-1">${n}</a>`)}</div>`}</header>
+<main><${Hero}/><${Services}/><${Why}/><${Portfolio}/><${Contact}/></main><${Footer}/>
+<a href=${wa(MSG)} target="_blank" rel="noopener" aria-label="WhatsApp" className="pu fixed z-50 right-5 w-16 h-16 rounded-full bg-[#25D366] grid place-items-center hover:scale-110 transition" style=${{bottom:'calc(1.25rem + env(safe-area-inset-bottom,0px))'}}><${WAIcon}/></a></div>`};
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${App}/>`);
+</script></body></html>
